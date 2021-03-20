@@ -23,37 +23,8 @@ class _LoginFormState extends State<LoginForm> {
   // }
 
   void _anonymousLogIn(bool _) {
-    showModalBottomSheet(
-      isScrollControlled: true,
-      context: context,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15.0),
-          topRight: Radius.circular(15.0),
-        ),
-      ),
-      builder: (context) {
-        return Container(
-          padding: MediaQuery.of(context)
-              .viewInsets, // mostrar contenido sobre el teclado
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(),
-                SizedBox(height: 14),
-                TextField(),
-                SizedBox(height: 24),
-                MaterialButton(
-                  onPressed: () {},
-                  child: Text("Login"),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
+    print("anonimo");
+    _loginBloc.add(LoginAnonymousEvent());
   }
 
   void _googleLogIn(bool _) {
@@ -90,7 +61,7 @@ class _LoginFormState extends State<LoginForm> {
           child: BlocProvider(
             create: (context) {
               _loginBloc = LoginBloc();
-              return _loginBloc..add(VerifyLogInEvent());
+              return _loginBloc;
             },
             child: BlocConsumer<LoginBloc, LoginState>(
               listener: (context, state) {

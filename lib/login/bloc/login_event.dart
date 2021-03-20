@@ -7,11 +7,6 @@ abstract class LoginEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class VerifyLogInEvent extends LoginEvent {
-  @override
-  List<Object> get props => [];
-}
-
 class LoginWithFacebookEvent extends LoginEvent {
   @override
   List<Object> get props => [];
