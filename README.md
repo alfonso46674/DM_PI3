@@ -5,6 +5,9 @@ App intro para utilizar un BaaS.
 - Configuracion del proyecto
 - Autenticacion con redes sociales
 - Usuarios anonimos
+--------------------------
+- Firebase firestore NoSQL
+- Firebase storage (files)
 
 ## Getting Started
 
@@ -18,4 +21,8 @@ flutter packages get
 
 
 <img src="screenshot/Capture0.PNG" width="240" height="480" />
+<img src="screenshot/Capture1.PNG" width="240" height="480" />
+<img src="screenshot/Capture2.PNG" width="240" height="480" />
+<img src="screenshot/Capture3.PNG" width="240" height="480" />
+<img src="screenshot/Capture4.PNG" width="240" height="480" />
 
