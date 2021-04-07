@@ -9,7 +9,12 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(AuthInitial());
+  static final AuthBloc _authBloc = AuthBloc._internal();
+  factory AuthBloc() {
+    return _authBloc;
+  }
+
+  AuthBloc._internal() : super(AuthInitial());
   // atuh provider
   UserAuthProvider _authProvider = UserAuthProvider();
 

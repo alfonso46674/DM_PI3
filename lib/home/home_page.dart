@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_login/bloc/auth_bloc.dart';
-import 'package:google_login/home/pantalla_dos.dart';
-import 'package:google_login/home/pantalla_tres.dart';
-import 'package:google_login/home/pantalla_uno.dart';
+import 'package:google_login/home/noticias_firebase/mis_noticias.dart';
+import 'noticias_ext_api/noticias_deportes.dart';
+import 'package:google_login/home/noticias_firebase/pantalla_tres.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -15,8 +15,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentPageIndex = 0;
   final _pagesList = [
-    PantallaUno(),
-    PantallaDos(),
+    NoticiasDeportes(),
+    MisNoticias(),
     PantallaTres(),
   ];
   @override
