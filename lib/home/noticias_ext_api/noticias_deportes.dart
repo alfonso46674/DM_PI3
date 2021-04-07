@@ -32,11 +32,6 @@ class NoticiasDeportes extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   CircularProgressIndicator(),
-                  SizedBox(height: 16),
-                  Text(
-                    "Cargando noticias...",
-                    style: TextStyle(fontSize: 32),
-                  ),
                 ],
               ),
             );

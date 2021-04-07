@@ -14,6 +14,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentPageIndex = 0;
+  final _titulosList = [
+    "Deportes",
+    "Mis noticias",
+    "???",
+  ];
   final _pagesList = [
     NoticiasDeportes(),
     MisNoticias(),
@@ -23,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("${_titulosList[_currentPageIndex]}"),
         actions: [
           IconButton(
             icon: Icon(Icons.logout),
@@ -48,16 +53,16 @@ class _HomePageState extends State<HomePage> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.online_prediction),
-            label: "Pantalla 1",
+            icon: Icon(Icons.sports_kabaddi),
+            label: "${_titulosList[0]}",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.open_in_browser_sharp),
-            label: "Pantalla 2",
+            icon: Icon(Icons.receipt_long),
+            label: "${_titulosList[1]}",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.park),
-            label: "Pantalla 3",
+            icon: Icon(Icons.thumb_up),
+            label: "${_titulosList[2]}",
           ),
         ],
       ),
