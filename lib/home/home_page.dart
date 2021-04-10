@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   final _titulosList = [
     "Deportes",
     "Mis noticias",
-    "???",
+    "Subir noticia",
   ];
   final _pagesList = [
     NoticiasDeportes(),
