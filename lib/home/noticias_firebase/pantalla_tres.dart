@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_login/models/new.dart';
-
+import 'package:google_login/models/new_firebase.dart';
 import 'bloc/my_news_bloc.dart';
 
 class PantallaTres extends StatefulWidget {
@@ -119,11 +119,11 @@ class _PantallaTresState extends State<PantallaTres> {
               onPressed: () {
                 newsBloc.add(
                   SaveNewElementEvent(
-                    noticia: New(
+                    noticia: NewFirebase(
                       author: autorTc.text,
                       title: tituloTc.text,
                       description: descrTc.text,
-                      publishedAt: DateTime.now(),
+                      // publishedAt: DateTime.now(),
                     ),
                   ),
                 );

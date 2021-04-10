@@ -74,7 +74,7 @@ class MyNewsBloc extends Bloc<MyNewsEvent, MyNewsState> {
     }
   }
 
-  Future<bool> _saveNoticias(New noticia) async {
+  Future<bool> _saveNoticias(NewFirebase noticia) async {
     try {
       await _cFirestore.collection("noticias").add(noticia.toJson());
       return true;

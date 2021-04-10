@@ -13,7 +13,7 @@ class RequestAllNewsEvent extends MyNewsEvent {
 }
 
 class SaveNewElementEvent extends MyNewsEvent {
-  final New noticia;
+  final NewFirebase noticia;
 
   SaveNewElementEvent({@required this.noticia});
   @override
