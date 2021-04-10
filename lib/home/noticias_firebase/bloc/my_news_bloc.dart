@@ -7,6 +7,7 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_login/models/new.dart';
+import 'package:google_login/models/new_firebase.dart';
 import 'package:image_picker/image_picker.dart';
 
 part 'my_news_event.dart';
@@ -86,18 +87,18 @@ class MyNewsBloc extends Bloc<MyNewsEvent, MyNewsState> {
   // recurpera la lista de docs en firestore
   // map a objet de dart
   // cada elemento agregarlo a una lista.
-  Future<List<New>> _getNoticias() async {
+  Future<List<NewFirebase>> _getNoticias() async {
     try {
       var noticias = await _cFirestore.collection("noticias").get();
       return noticias.docs
           .map(
-            (element) => New(
+            (element) => NewFirebase(
               author: element["author"],
               title: element["title"],
               urlToImage: element["urlToImage"],
               description: element["description"],
               // source: element["source"],
-              publishedAt: DateTime.parse(element["publishedAt"]),
+              //publishedAt: DateTime.parse(element["publishedAt"]),
             ),
           )
           .toList();

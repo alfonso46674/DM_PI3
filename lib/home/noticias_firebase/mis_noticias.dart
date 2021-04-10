@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_login/home/noticias_ext_api/item_noticia.dart';
+import 'package:google_login/home/noticias_firebase/item_noticia_firebase.dart';
 
 import 'bloc/my_news_bloc.dart';
 
@@ -41,7 +41,7 @@ class _MisNoticiasState extends State<MisNoticias> {
             return ListView.builder(
               itemCount: state.noticiasList.length,
               itemBuilder: (BuildContext context, int index) {
-                return ItemNoticia(noticia: state.noticiasList[index]);
+                return ItemNoticiaFirebase(noticia: state.noticiasList[index]);
               },
             );
           }

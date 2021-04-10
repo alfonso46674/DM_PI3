@@ -12,7 +12,7 @@ class MyNewsInitial extends MyNewsState {}
 class LoadingState extends MyNewsState {}
 
 class LoadedNewsState extends MyNewsState {
-  final List<New> noticiasList;
+  final List<NewFirebase> noticiasList;
 
   LoadedNewsState({@required this.noticiasList});
   @override
