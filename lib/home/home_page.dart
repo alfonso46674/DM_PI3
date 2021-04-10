@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_login/bloc/auth_bloc.dart';
 import 'package:google_login/home/noticias_firebase/mis_noticias.dart';
 import 'noticias_ext_api/noticias_deportes.dart';
-import 'package:google_login/home/noticias_firebase/pantalla_tres.dart';
+import 'package:google_login/home/formulario/pantalla_tres.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
