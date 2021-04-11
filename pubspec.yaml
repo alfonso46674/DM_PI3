@@ -23,8 +23,8 @@ dependencies:
   cloud_firestore: ^1.0.4
   firebase_storage: ^8.0.2
   image_picker: ^0.7.4
-
-
+  flutter_search_bar: ^2.1.0  
+  material_floating_search_bar: ^0.3.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

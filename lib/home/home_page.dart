@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_login/bloc/auth_bloc.dart';
 import 'package:google_login/home/formulario/bloc/formulario_bloc.dart';
+import 'package:google_login/home/noticias_ext_api/bloc/exteriornews_bloc.dart';
 import 'package:google_login/home/noticias_firebase/bloc/my_news_bloc.dart';
 import 'package:google_login/home/noticias_firebase/mis_noticias.dart';
 import 'noticias_ext_api/noticias_deportes.dart';
@@ -30,6 +31,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => ExteriornewsBloc()..add(RequestInitialExteriorNewsEvent()),
+        ),
         BlocProvider(
           create: (context) => MyNewsBloc()..add(RequestAllNewsEvent()),
         ),
