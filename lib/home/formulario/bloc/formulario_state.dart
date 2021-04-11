@@ -23,10 +23,10 @@ class SavedNewState extends FormularioState {
   List<Object> get props => [];
 }
 
-class ErrorMessageState extends FormularioState {
+class FormularioErrorMessageState extends FormularioState {
   final String errorMsg;
 
-  ErrorMessageState({@required this.errorMsg});
+  FormularioErrorMessageState({@required this.errorMsg});
   @override
   List<Object> get props => [errorMsg];
 }

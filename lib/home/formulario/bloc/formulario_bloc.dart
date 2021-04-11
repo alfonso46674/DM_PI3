@@ -38,7 +38,7 @@ class FormularioBloc extends Bloc<FormularioEvent, FormularioState> {
         // yield LoadedNewsState(noticiasList: await _getNoticias() ?? []);
         yield SavedNewState();
       } else {
-        yield ErrorMessageState(errorMsg: "No se pudo guardar la imagen");
+        yield FormularioErrorMessageState(errorMsg: "No se pudo guardar la imagen");
       }
     }
   }

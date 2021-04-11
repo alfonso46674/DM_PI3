@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_login/home/formulario/bloc/formulario_bloc.dart';
 import 'package:google_login/home/noticias_firebase/item_noticia_firebase.dart';
 
 import 'bloc/my_news_bloc.dart';
@@ -14,8 +15,12 @@ class MisNoticias extends StatefulWidget {
 class _MisNoticiasState extends State<MisNoticias> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MyNewsBloc()..add(RequestAllNewsEvent()),
+    return BlocListener<FormularioBloc, FormularioState>(
+      listener: (context, state) {
+        if(state is SavedNewState){
+          BlocProvider.of<MyNewsBloc>(context).add(RequestAllNewsEvent());
+        }
+      },
       child: BlocConsumer<MyNewsBloc, MyNewsState>(
         listener: (context, state) {
           if (state is LoadingState) {
@@ -39,7 +44,7 @@ class _MisNoticiasState extends State<MisNoticias> {
         builder: (context, state) {
           if (state is LoadedNewsState) {
             return RefreshIndicator(
-              onRefresh: () async{
+              onRefresh: () async {
                 BlocProvider.of<MyNewsBloc>(context).add(RequestAllNewsEvent());
               },
               child: ListView.builder(

@@ -15,7 +15,6 @@ class PantallaTres extends StatefulWidget {
 }
 
 class _PantallaTresState extends State<PantallaTres> {
-  FormularioBloc formularioBloc;
   File slectedImage;
   var autorTc = TextEditingController();
   var tituloTc = TextEditingController();
@@ -23,45 +22,39 @@ class _PantallaTresState extends State<PantallaTres> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) {
-        formularioBloc = FormularioBloc();
-        return formularioBloc;
-      },
-      child: BlocConsumer<FormularioBloc, FormularioState>(
-        listener: (context, state) {
-          if (state is PickedImageState) {
-            slectedImage = state.image;
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  content: Text("Imagen seleccionada"),
-                ),
-              );
-          } else if (state is SavedNewState) {
-            autorTc.clear();
-            tituloTc.clear();
-            descrTc.clear();
-            slectedImage = null;
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  content: Text("Noticia guardada.."),
-                ),
-              );
-          }
-        },
-        builder: (context, state) {
-          if (state is LoadingFormularioState) {
-            return Center(
-              child: CircularProgressIndicator(),
+    return BlocConsumer<FormularioBloc, FormularioState>(
+      listener: (context, state) {
+        if (state is PickedImageState) {
+          slectedImage = state.image;
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text("Imagen seleccionada"),
+              ),
             );
-          }
-          return _createForm();
-        },
-      ),
+        } else if (state is SavedNewState) {
+          autorTc.clear();
+          tituloTc.clear();
+          descrTc.clear();
+          slectedImage = null;
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text("Noticia guardada.."),
+              ),
+            );
+        }
+      },
+      builder: (context, state) {
+        if (state is LoadingFormularioState) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return _createForm();
+      },
     );
   }
 
@@ -112,13 +105,13 @@ class _PantallaTresState extends State<PantallaTres> {
             MaterialButton(
               child: Text("Imagen"),
               onPressed: () {
-                formularioBloc.add(PickImageEvent());
+                BlocProvider.of<FormularioBloc>(context).add(PickImageEvent());
               },
             ),
             MaterialButton(
               child: Text("Guardar"),
               onPressed: () {
-                formularioBloc.add(
+                BlocProvider.of<FormularioBloc>(context).add(
                   SaveNewElementEvent(
                     noticia: NewFirebase(
                       author: autorTc.text,
