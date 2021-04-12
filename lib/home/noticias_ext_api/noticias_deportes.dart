@@ -91,6 +91,13 @@ class _NoticiasDeportesState extends State<NoticiasDeportes> {
                 ));
               },
             ),
+            MaterialButton(
+              child: Text('Deportes'),
+              onPressed: () {
+                BlocProvider.of<ExteriornewsBloc>(context)
+                    .add(RequestInitialExteriorNewsEvent());
+              },
+            ),
           ],
         ),
         //mostrar noticias
