@@ -15,6 +15,14 @@ class SaveNewElementEvent extends FormularioEvent {
   List<Object> get props => [noticia];
 }
 
+class SaveExteriorElementEvent extends FormularioEvent {
+  final NewFirebase noticia;
+
+  SaveExteriorElementEvent({@required this.noticia});
+  @override
+  List<Object> get props => [noticia];
+}
+
 class PickImageEvent extends FormularioEvent {
   @override
   List<Object> get props => [];

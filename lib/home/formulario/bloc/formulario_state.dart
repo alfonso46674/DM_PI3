@@ -22,6 +22,9 @@ class PickedImageState extends FormularioState {
 class SavedNewState extends FormularioState {
   List<Object> get props => [];
 }
+class SavedExteriorNewState extends FormularioState {
+  List<Object> get props => [];
+}
 
 class FormularioErrorMessageState extends FormularioState {
   final String errorMsg;
