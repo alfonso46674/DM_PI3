@@ -42,9 +42,7 @@ class _NoticiasDeportesState extends State<NoticiasDeportes> {
           //si no hay nada en la lista
           //TODO: Implementar mejor manejo de errores para la api
           if (state.noticiasExternasList.length == 0) {
-            return Center(
-              child: Text("Algo salio mal", style: TextStyle(fontSize: 32)),
-            );
+            return _externalNewsError();
           }
           //Si hay elementos en la lista mostrarlos
           else if (state.noticiasExternasList.length > 0) {
@@ -65,6 +63,51 @@ class _NoticiasDeportesState extends State<NoticiasDeportes> {
           );
         }
       },
+    );
+  }
+
+  Widget _externalNewsError() {
+    return Column(
+      children: [
+        //barra de busqueda
+        Row(
+          children: [
+            Expanded(
+              child: TextField(
+                controller: queryController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            MaterialButton(
+              child: Text('Buscar'),
+              onPressed: () {
+                BlocProvider.of<ExteriornewsBloc>(context)
+                    .add(RequestCustomExteriorNewsEvent(
+                  query: queryController.text,
+                ));
+              },
+            ),
+            MaterialButton(
+              child: Text('Deportes'),
+              onPressed: () {
+                BlocProvider.of<ExteriornewsBloc>(context)
+                    .add(RequestInitialExteriorNewsEvent());
+              },
+            ),
+          ],
+        ),
+        //mostrar error
+        Expanded(
+          child: Center(
+            child: Text(
+              "Algo salio mal",
+              style: TextStyle(fontSize: 32),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
