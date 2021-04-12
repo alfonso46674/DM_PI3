@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentPageIndex = 0;
   final _titulosList = [
-    "Deportes",
+    "Noticias",
     "Mis noticias",
     "Subir noticia",
   ];
