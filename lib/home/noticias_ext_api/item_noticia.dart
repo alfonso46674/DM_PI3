@@ -46,10 +46,22 @@ class _ItemNoticiaState extends State<ItemNoticia> {
                   flex: 1,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
-                    child: Image.network(
+                    child: Builder(
+                      builder:(context){
+                        final condition = widget.noticia.urlToImage != null;
+                        return condition
+                        ? Image.network(
                       "${widget.noticia.urlToImage}",
                       height: 200,
                       fit: BoxFit.cover,
+                    )
+                    : 
+                    Image.asset(
+                      "assets/dummy-square.png",
+                      height: 200,
+                      fit: BoxFit.cover,
+                    );
+                      }
                     ),
                   ),
                 ),
