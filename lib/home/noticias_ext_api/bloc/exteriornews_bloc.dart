@@ -57,8 +57,7 @@ class ExteriornewsBloc extends Bloc<ExteriornewsEvent, ExteriornewsState> {
     //mostrar noticias de acuerdo a un query
     else if (event is RequestCustomExteriorNewsEvent) {
       try {
-        await newsRepository.getAvailableNoticias(event.query);
-        yield LoadedExternalNewsState(noticiasExternasList: noticiasExternas);
+        yield LoadedExternalNewsState(noticiasExternasList: await newsRepository.getAvailableNoticias(event.query));
       } catch (e) {
         yield ErrorMessageExternalNewsState(errorMsg: e);
       }
