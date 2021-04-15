@@ -2,17 +2,29 @@ import 'package:equatable/equatable.dart';
 
 import 'source.dart';
 
+import 'package:hive/hive.dart';
+part 'new.g.dart'; // flutter pub run build_runner build
+
+@HiveType(typeId: 1, adapterName: 'NewAdapter')
 class New extends Equatable {
+  // @HiveField(0)
   final Source source;
+  @HiveField(0)
   final String author;
+  @HiveField(1)
   final String title;
+  @HiveField(2)
   final String description;
+  @HiveField(3)
   final String url;
+  @HiveField(4)
   final String urlToImage;
+  // @HiveField(4)
   final DateTime publishedAt;
+  // @HiveField(7)
   final String content;
 
-  const New({
+   New({
     this.source,
     this.author,
     this.title,
@@ -37,9 +49,8 @@ class New extends Equatable {
       title: json['title'] as String,
       description: json['description'] as String,
       url: json['url'] as String,
-      urlToImage: json['urlToImage'] == null ?
-      null
-      :json['urlToImage'] as String,
+      urlToImage:
+          json['urlToImage'] == null ? null : json['urlToImage'] as String,
       publishedAt: json['publishedAt'] == null
           ? null
           : DateTime.parse(json['publishedAt'] as String),

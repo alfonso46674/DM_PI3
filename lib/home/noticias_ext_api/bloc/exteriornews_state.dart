@@ -18,11 +18,20 @@ class LoadedExternalNewsState extends ExteriornewsState {
   @override 
   List<Object> get props => [noticiasExternasList];
 }
-//Se manda cuando  no hay conexion
+
 class ErrorMessageExternalNewsState extends ExteriornewsState{
   final String errorMsg;
 
    ErrorMessageExternalNewsState({@required this.errorMsg});
   @override
   List<Object> get props => [errorMsg]; 
+}
+
+//para cuando se devuelven las noticias guardadas en hive
+class LocalStoredNewsState extends ExteriornewsState {
+  final List<New> noticiasLocales;
+
+  LocalStoredNewsState({@required this.noticiasLocales});
+  @override 
+  List<Object> get props => [noticiasLocales];
 }

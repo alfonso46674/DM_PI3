@@ -27,13 +27,22 @@ class _NoticiasDeportesState extends State<NoticiasDeportes> {
                 content: Text('Cargando...'),
               ),
             );
-            //Mandar error de falta de conexion
+          //Mandar error de falta de conexion
         } else if (state is ErrorMessageExternalNewsState) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
-                content: Text("Ha ocurrido un error de conexión"),
+                content: Text("${state.errorMsg}"),
+              ),
+            );
+        } // mostrar en caso de que no haya conexion y se muestren las noticias locales
+        else if (state is LocalStoredNewsState) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text("Mostrando noticias guardadas localmente"),
               ),
             );
         }
@@ -48,7 +57,7 @@ class _NoticiasDeportesState extends State<NoticiasDeportes> {
           }
           //Si hay elementos en la lista mostrarlos
           else if (state.noticiasExternasList.length > 0) {
-            return _externalNews(state.noticiasExternasList);
+            return _externalNews(state.noticiasExternasList, false);
           } else {
             return Center(
               child: Column(
@@ -60,11 +69,10 @@ class _NoticiasDeportesState extends State<NoticiasDeportes> {
             );
           }
         }
-          // si no se pudo conectar a la api; No hay conexion
-         else if(state is ErrorMessageExternalNewsState){
-           return _externalNewsError();
-        } 
-        else {
+        // si no se pudo conectar a la api, mandar llamar las noticias guardadas en hive
+        else if (state is LocalStoredNewsState) {
+          return _externalNews(state.noticiasLocales, true);
+        } else {
           return Center(
             child: CircularProgressIndicator(),
           );
@@ -118,7 +126,8 @@ class _NoticiasDeportesState extends State<NoticiasDeportes> {
     );
   }
 
-  Widget _externalNews(noticiasExternas) {
+  //Segundo parametro sirve como condicional para saber si se tiene que mostrar las noticias en hive o no
+  Widget _externalNews(noticiasExternas, mostrandoNoticiasHive) {
     return Column(
       children: [
         //barra de busqueda
@@ -149,6 +158,18 @@ class _NoticiasDeportesState extends State<NoticiasDeportes> {
               },
             ),
           ],
+        ),
+        Builder(
+          builder: (context) {
+            final condition = mostrandoNoticiasHive == true;
+            return condition
+                ? Text(
+                    "Algo salio mal; Error de conexion",
+                    style: TextStyle(fontSize: 25),
+                    maxLines: 2,
+                  )
+                : Text("");
+          },
         ),
         //mostrar noticias
         Expanded(

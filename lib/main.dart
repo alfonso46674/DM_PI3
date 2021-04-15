@@ -4,11 +4,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_login/bloc/auth_bloc.dart';
 import 'package:google_login/home/home_page.dart';
 import 'package:google_login/login/login_page.dart';
+import 'package:google_login/models/new.dart';
 import 'package:google_login/splash_screen.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
   // inicializar firebase
   WidgetsFlutterBinding.ensureInitialized();
+  final _localStorage = await getExternalStorageDirectory();
+  Hive.init(_localStorage.path);
+  Hive.registerAdapter(NewAdapter());
+  await Hive.openBox('ExternalNews');
   await Firebase.initializeApp();
 
   runApp(
