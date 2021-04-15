@@ -18,7 +18,7 @@ class LoadedExternalNewsState extends ExteriornewsState {
   @override 
   List<Object> get props => [noticiasExternasList];
 }
-
+//Se manda cuando  no hay conexion
 class ErrorMessageExternalNewsState extends ExteriornewsState{
   final String errorMsg;
 

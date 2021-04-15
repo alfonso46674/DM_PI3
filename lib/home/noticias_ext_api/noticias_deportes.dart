@@ -27,17 +27,19 @@ class _NoticiasDeportesState extends State<NoticiasDeportes> {
                 content: Text('Cargando...'),
               ),
             );
+            //Mandar error de falta de conexion
         } else if (state is ErrorMessageExternalNewsState) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
-                content: Text("${state.errorMsg}"),
+                content: Text("Ha ocurrido un error de conexión"),
               ),
             );
         }
       },
       builder: (context, state) {
+        //si se pudo conectar a la api
         if (state is LoadedExternalNewsState) {
           //si no hay nada en la lista
           //TODO: Implementar mejor manejo de errores para la api
@@ -57,7 +59,12 @@ class _NoticiasDeportesState extends State<NoticiasDeportes> {
               ),
             );
           }
-        } else {
+        }
+          // si no se pudo conectar a la api; No hay conexion
+         else if(state is ErrorMessageExternalNewsState){
+           return _externalNewsError();
+        } 
+        else {
           return Center(
             child: CircularProgressIndicator(),
           );
